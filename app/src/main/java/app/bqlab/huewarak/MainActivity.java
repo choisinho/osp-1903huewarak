@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -59,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void connectToDevice() {
         if (!mBluetooth.isBluetoothAvailable()) {
-            Toast.makeText(this, "블루투스를 지원하지 않는 기기입니다.", Toast.LENGTH_LONG).show();
+            showToastInCenter("블루투스를 지원하지 않는 기기입니다.");
             finishAffinity();
         } else if(!mBluetooth.isBluetoothEnabled()) {
-            Toast.makeText(this, "블루투스가 활성화되지 않았습니다..", Toast.LENGTH_LONG).show();
+            showToastInCenter("블루투스가 활성화되지 않았습니다.");
         } else if (!mBluetooth.isServiceAvailable()) {
             mBluetooth.setupService();
             mBluetooth.startService(BluetoothState.DEVICE_OTHER);
@@ -77,19 +78,19 @@ public class MainActivity extends AppCompatActivity {
             mBluetooth.setBluetoothConnectionListener(new BluetoothSPP.BluetoothConnectionListener() {
                 @Override
                 public void onDeviceConnected(String name, String address) {
-                    Toast.makeText(MainActivity.this, "연결되었습니다.", Toast.LENGTH_LONG).show();
+                    showToastInCenter("연결되었습니다.");
                 }
 
                 @Override
                 public void onDeviceDisconnected() {
                     deviceConnected = false;
-                    Toast.makeText(MainActivity.this, "연결되지 않았습니다.", Toast.LENGTH_LONG).show();
+                    showToastInCenter("연결되지 않았습니다.");
                 }
 
                 @Override
                 public void onDeviceConnectionFailed() {
                     deviceConnected = false;
-                    Toast.makeText(MainActivity.this, "연결되지 않았습니다.", Toast.LENGTH_LONG).show();
+                    showToastInCenter("연결되지 않았습니다.");
                 }
             });
             startActivityForResult(new Intent(MainActivity.this, DeviceList.class), BluetoothState.REQUEST_ENABLE_BT);
@@ -128,5 +129,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }).show();
         }
+    }
+
+    private void showToastInCenter(String message) {
+        Toast toast = Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 }
