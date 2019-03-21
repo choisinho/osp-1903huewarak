@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
@@ -23,6 +25,8 @@ import app.akexorcist.bluetotohspp.library.DeviceList;
 public class MainActivity extends AppCompatActivity {
 
     //variables
+    String input = "0";
+    int point = 5000;
     boolean deviceConnected;
     //objects
     BluetoothSPP mBluetooth;
@@ -50,10 +54,157 @@ public class MainActivity extends AppCompatActivity {
         //initialize
         mBluetooth = new BluetoothSPP(this);
         //setup
+        ((TextView) findViewById(R.id.main_top_point)).setText(String.valueOf(point));
         findViewById(R.id.main_top_connect).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showConnectionDialog();
+            }
+        });
+        findViewById(R.id.main_bot_0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.length() > 0) {
+                    input += ((Button) v).getText().toString();
+                    ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+                }
+            }
+        });
+        findViewById(R.id.main_bot_1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.charAt(0) == '0')
+                    input = "";
+                input += ((Button) v).getText().toString();
+                ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+            }
+        });
+        findViewById(R.id.main_bot_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.charAt(0) == '0')
+                    input = "";
+                input += ((Button) v).getText().toString();
+                ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+            }
+        });
+        findViewById(R.id.main_bot_3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.charAt(0) == '0')
+                    input = "";
+                input += ((Button) v).getText().toString();
+                ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+            }
+        });
+        findViewById(R.id.main_bot_4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.charAt(0) == '0')
+                    input = "";
+                input += ((Button) v).getText().toString();
+                ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+            }
+        });
+        findViewById(R.id.main_bot_5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.charAt(0) == '0')
+                    input = "";
+                input += ((Button) v).getText().toString();
+                ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+            }
+        });
+        findViewById(R.id.main_bot_6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.charAt(0) == '0')
+                    input = "";
+                input += ((Button) v).getText().toString();
+                ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+            }
+        });
+        findViewById(R.id.main_bot_7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.charAt(0) == '0')
+                    input = "";
+                input += ((Button) v).getText().toString();
+                ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+            }
+        });
+        findViewById(R.id.main_bot_8).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.charAt(0) == '0')
+                    input = "";
+                input += ((Button) v).getText().toString();
+                ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+            }
+        });
+        findViewById(R.id.main_bot_9).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.charAt(0) == '0')
+                    input = "";
+                input += ((Button) v).getText().toString();
+                ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+            }
+        });
+        findViewById(R.id.main_bot_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (input.length() > 1) {
+                    input = input.substring(0, input.length() - 1);
+                    ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+                } else {
+                    input = "0";
+                    ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+                }
+            }
+        });
+        findViewById(R.id.main_bot_back).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                input = "0";
+                ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+                return false;
+            }
+        });
+        findViewById(R.id.main_bot_plus).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    int i = Integer.parseInt(input);
+                    if (i > 0 && i <= 1000000) {
+                        point += i;
+                        input = "0";
+                        ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+                        ((TextView) findViewById(R.id.main_top_point)).setText(String.valueOf(point));
+                    } else {
+                        showToastInCenter("0과 100만 사이의 수를 입력해주세요.");
+                    }
+                } catch (NumberFormatException e) {
+                    showToastInCenter("0과 100만 사이의 수를 입력해주세요.");
+                }
+            }
+        });
+        findViewById(R.id.main_bot_minus).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    int i = Integer.parseInt(input);
+                    if (i > 0 && i <= 1000000) {
+                        point -= i;
+                        input = "0";
+                        ((TextView) findViewById(R.id.main_bot_input)).setText(input);
+                        ((TextView) findViewById(R.id.main_top_point)).setText(String.valueOf(point));
+                    } else {
+                        showToastInCenter("0과 100만 사이의 수를 입력해주세요.");
+                    }
+                } catch (NumberFormatException e) {
+                    showToastInCenter("0과 100만 사이의 수를 입력해주세요.");
+                }
             }
         });
     }
@@ -62,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
         if (!mBluetooth.isBluetoothAvailable()) {
             showToastInCenter("블루투스를 지원하지 않는 기기입니다.");
             finishAffinity();
-        } else if(!mBluetooth.isBluetoothEnabled()) {
+        } else if (!mBluetooth.isBluetoothEnabled()) {
             showToastInCenter("블루투스가 활성화되지 않았습니다.");
         } else if (!mBluetooth.isServiceAvailable()) {
             mBluetooth.setupService();
@@ -73,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onDataReceived(byte[] data, String message) {
                     deviceConnected = true;
+                    point -= Integer.parseInt(message);
                 }
             });
             mBluetooth.setBluetoothConnectionListener(new BluetoothSPP.BluetoothConnectionListener() {
@@ -125,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
                     .setNeutralButton("장치와 페어링하기", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            startActivity(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS));
+                            startActivity(new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS));
                         }
                     }).show();
         }
