@@ -33,6 +33,12 @@
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/main_top_connect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="장치와의 연결 설정"/>
     </LinearLayout>
 
     <LinearLayout
