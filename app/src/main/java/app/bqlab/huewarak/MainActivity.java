@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onDataReceived(byte[] data, String message) {
                     deviceConnected = true;
-                    point -= Integer.parseInt(message);
+                    point += Integer.parseInt(message);
                 }
             });
             mBluetooth.setBluetoothConnectionListener(new BluetoothSPP.BluetoothConnectionListener() {
